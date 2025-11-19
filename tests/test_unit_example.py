@@ -1,16 +1,21 @@
-import sys, os
+import os
+import sys
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from app import app, items
 import pytest
+from app import add_numbers
+
 
 @pytest.fixture
-def client():
-    with app.test_client() as client:
-        items.clear()  
-        yield client
 
-def test_add_item_logic():
-    items.clear()
-    items.append('Item1')
-    assert len(items) == 1
-    assert items[0] == 'Item1'
+def test_add_positive_numbers():
+    assert add_numbers(2, 3) == 5
+
+def test_add_negative_numbers():
+    assert add_numbers(-2, -3) == -5
+
+def test_add_mixed_numbers():
+    assert add_numbers(-2, 3) == 1
+
+def test_add_zeros():
+    assert add_numbers(0, 0) == 0
