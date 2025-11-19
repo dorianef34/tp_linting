@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for
-import os
+
 app = Flask(__name__)
 
 # In-memory database
